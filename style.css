@@ -1,0 +1,919 @@
+/* ==========================================
+   CSS Custom Properties (Variables)
+   ========================================== */
+:root {
+    /* Colors - Light Theme / Silver / Soft Blue */
+    --bg-base: #f5f5f7;
+    --text-primary: #1d1d1f;
+    --text-secondary: #86868b;
+    --accent-color: #2997ff;
+    
+    /* Glassmorphism Variables */
+    --glass-bg: rgba(255, 255, 255, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --glass-highlight: rgba(255, 255, 255, 0.9);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04);
+    --blur-amount: blur(24px);
+    
+    /* Layout & Spacing */
+    --border-radius-sm: 12px;
+    --border-radius-md: 20px;
+    --border-radius-lg: 32px;
+    --max-width: 1100px;
+    --spacing-section: 120px;
+}
+
+/* ==========================================
+   Reset & Global Typography
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================
+   Ambient Background (Liquid Aesthetic)
+   ========================================== */
+.ambient-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f5f7 0%, #e8e8ed 100%);
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 20s infinite ease-in-out alternate;
+}
+
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: #d0e3ff;
+    top: -10%;
+    left: -10%;
+}
+
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: #e1d8ff;
+    bottom: -10%;
+    right: -5%;
+    animation-delay: -5s;
+}
+
+.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: #ffffff;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.8;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -50px) scale(1.1); }
+}
+
+/* ==========================================
+   Core Glassmorphism Utility
+   ========================================== */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur-amount);
+    -webkit-backdrop-filter: var(--blur-amount);
+    border: 1px solid var(--glass-border);
+    border-top: 1px solid var(--glass-highlight);
+    border-left: 1px solid var(--glass-highlight);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--border-radius-md);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.glass-card:hover {
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================
+   Navigation
+   ========================================== */
+.glass-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: var(--max-width);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(30px) saturate(150%);
+    -webkit-backdrop-filter: blur(30px) saturate(150%);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+/* ==========================================
+   Layout Helpers
+   ========================================== */
+.section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-section) 20px 0;
+}
+
+.section-header {
+    margin-bottom: 40px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #1d1d1f 0%, #434345 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.hero-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    padding-top: 100px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    letter-spacing: -0.04em;
+}
+
+.hero-title span {
+    background: linear-gradient(135deg, var(--text-secondary) 0%, #b5b5ba 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    font-weight: 400;
+    max-width: 80%;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 16px;
+}
+
+.btn {
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--text-primary);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background-color: #000;
+    transform: scale(1.02);
+}
+
+.btn-glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--blur-amount);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+}
+
+.btn-glass:hover {
+    background: rgba(255,255,255,0.8);
+    transform: scale(1.02);
+}
+
+/* Hero Visual Card */
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    perspective: 1000px;
+}
+
+.floating-ui {
+    width: 380px;
+    height: 480px;
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transform: rotateY(-10deg) rotateX(10deg);
+    animation: float-ui 6s ease-in-out infinite alternate;
+}
+
+@keyframes float-ui {
+    0% { transform: translateY(0px) rotateY(-10deg) rotateX(10deg); }
+    100% { transform: translateY(-20px) rotateY(-8deg) rotateX(12deg); }
+}
+
+.ui-header {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+.ui-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.ui-dot.red { background: #ff5f56; }
+.ui-dot.yellow { background: #ffbd2e; }
+.ui-dot.green { background: #27c93f; }
+
+.ui-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ui-line {
+    height: 16px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 8px;
+    width: 100%;
+}
+
+.ui-line.short {
+    width: 60%;
+}
+
+.ui-line.pulse {
+    background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.2) 100%);
+    background-size: 200% 100%;
+    animation: pulse-line 2s infinite linear;
+}
+
+@keyframes pulse-line {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+}
+
+/* ==========================================
+   About Section
+   ========================================== */
+.about-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 32px;
+}
+
+.about-text {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+.about-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.avatar-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.avatar-placeholder svg {
+    width: 64px;
+    height: 64px;
+    opacity: 0.5;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
+}
+
+/* ==========================================
+   Education & Experience (Stacked Lists)
+   ========================================== */
+.stacked-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.list-card {
+    padding: 32px 40px;
+    display: flex;
+    gap: 40px;
+}
+
+.list-card:hover {
+    transform: translateX(8px);
+}
+
+.list-meta {
+    width: 140px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+.list-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+.list-content h4 {
+    font-size: 1rem;
+    color: var(--accent-color);
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.list-content p {
+    color: var(--text-secondary);
+}
+
+.bullet-list {
+    list-style-type: none;
+    color: var(--text-secondary);
+}
+
+.bullet-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+
+.bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--text-secondary);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+/* ==========================================
+   Projects Section
+   ========================================== */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+}
+
+.project-image-placeholder {
+    height: 240px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.6) 100%);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.project-info {
+    padding: 32px;
+}
+
+.project-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+.project-info p {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.glass-pill {
+    padding: 6px 14px;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid var(--glass-highlight);
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.project-link {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.project-link:hover {
+    color: var(--accent-color);
+}
+
+/* ==========================================
+   Skills Section
+   ========================================== */
+.skills-container {
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.glass-pill.large {
+    padding: 12px 24px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.glass-pill.large:hover {
+    background: rgba(255,255,255,0.8);
+    transform: scale(1.05);
+}
+
+/* ==========================================
+   Contact Section
+   ========================================== */
+.contact-section {
+    padding-bottom: var(--spacing-section);
+}
+
+.contact-card {
+    padding: 64px 40px;
+    text-align: center;
+}
+
+.contact-card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.contact-card p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 48px;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+}
+
+.contact-item .label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.contact-item .value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+a.contact-item:hover .value {
+    color: var(--accent-color);
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding-top: 140px;
+        gap: 60px;
+    }
+    
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-subtitle {
+        max-width: 100%;
+    }
+
+    .hero-visual {
+        justify-content: center;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --spacing-section: 80px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .list-card {
+        flex-direction: column;
+        gap: 16px;
+        padding: 24px;
+    }
+
+    .list-meta {
+        width: 100%;
+    }
+
+    .nav-links {
+        display: none; /* In a real app with JS, this would be a hamburger menu. Hiding for pure static mobile simplicity, or it could be scrollable. */
+    }
+
+    .nav-container {
+        justify-content: center;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .contact-item {
+        text-align: center;
+    }
+
+    .floating-ui {
+        width: 100%;
+        max-width: 340px;
+        height: 400px;
+    }
+
+    .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(30px) saturate(150%);
+        -webkit-backdrop-filter: blur(30px) saturate(150%);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--border-radius-md);
+        padding: 20px 24px;
+        gap: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .skill-group {
+        padding: 20px 24px;
+    }
+
+    .contact-item-wrapper {
+        justify-content: center;
+    }
+}
+
+/* ==========================================
+   Mobile Navigation Toggle
+   ========================================== */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-container {
+        justify-content: space-between;
+    }
+}
+
+.nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ==========================================
+   Active Nav Link
+   ========================================== */
+.nav-links a.active {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ==========================================
+   Scroll Reveal Animations
+   ========================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ==========================================
+   Skills Categories Layout
+   ========================================== */
+.skills-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.skill-group {
+    padding: 32px 40px;
+}
+
+.skill-group-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* ==========================================
+   Section Subheader
+   ========================================== */
+.section-subheader {
+    margin-top: 48px;
+    margin-bottom: 24px;
+}
+
+.section-subheader h3 {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* ==========================================
+   Copy Button & Toast
+   ========================================== */
+.contact-item-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--text-primary);
+}
+
+.toast {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--text-primary);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================
+   Resume Download Button
+   ========================================== */
+#resume-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==========================================
+   Project Card Tilt
+   ========================================== */
+.project-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* ==========================================
+   Neural Network Canvas
+   ========================================== */
+.neural-canvas {
+    width: 100%;
+    height: 480px;
+    border-radius: var(--border-radius-lg);
+}
+
+@media (max-width: 992px) {
+    .neural-canvas {
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .neural-canvas {
+        height: 360px;
+    }
+}
